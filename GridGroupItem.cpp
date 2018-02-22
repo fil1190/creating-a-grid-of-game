@@ -1,19 +1,20 @@
 #include "GridGroupItem.h"
 #include "HexagonalCell.h"
 
-GridGroupItem::GridGroupItem(InputDataForGridGroup inputData,
-                             GridType typeGrid):
+GridGroupItem::GridGroupItem(NumberOfCells numberOfCells, GridType typeGrid):
     _typeGrid(typeGrid),
-    _inputData((inputData))
+    _numberOfCells(numberOfCells)
 {
+    _sceneSize.setHeight(1000);
+    _sceneSize.setWidth(1000);
     creatingGrid();
 }
 
 QSizeF GridGroupItem::getSceneSize() const
 {
     QSize sceneSize;
-    sceneSize.setWidth((_serviceData.cellSize.width() * _inputData.numberOfColumns)+0.5*_serviceData.cellSize.width());
-    sceneSize.setHeight((_serviceData.cellSize.height()*3.0/4.0 * (_inputData.numberOfRows-1.0))+ _serviceData.cellSize.height());
+    sceneSize.setWidth((_serviceData.cellSize.width() * _numberOfCells.inColumn)+0.5*_serviceData.cellSize.width());
+    sceneSize.setHeight((_serviceData.cellSize.height()*3.0/4.0 * (_numberOfCells.inRow-1.0))+ _serviceData.cellSize.height());
     return sceneSize;
 }
 
@@ -24,9 +25,9 @@ void GridGroupItem::creatingGrid()
     QVector <GridItem*> gridLine;
 
     calculateServiceData();
-    for (int i = 0; i < _inputData.numberOfRows; ++i)
+    for (int i = 0; i < _numberOfCells.inRow; ++i)
     {
-        for (int j = 0; j < _inputData.numberOfColumns; ++j)
+        for (int j = 0; j < _numberOfCells.inColumn; ++j)
         {
             _serviceData.coordinatesOfCenter = calculateNewCoordinatesForCenter(coordinates, i, j);
             gridLine.push_back(creatingGridCell());
@@ -75,9 +76,9 @@ QPointF GridGroupItem::centerForHexagonOddR(QPointF &oldCoordinates, const int n
 void GridGroupItem::calculateServiceData()
 {
     IGridCell *gridCell = creatingGridCellForServiceData();
-    _serviceData = gridCell->calculateServiceData(_inputData.sceneSize,
-                                                  _inputData.numberOfRows,
-                                                  _inputData.numberOfColumns);
+    _serviceData = gridCell->calculateServiceData(_sceneSize,
+                                                  _numberOfCells.inRow,
+                                                  _numberOfCells.inColumn);
     delete gridCell;
 }
 
@@ -124,3 +125,13 @@ IGridCell* GridGroupItem::creatingGridCellForServiceData()
     }
 
 }
+
+//int NumberOfCells::getNumberOfColumns() const
+//{
+//    return inColumn;
+//}
+
+//void NumberOfCells::setNumberOfColumns(int value)
+//{
+//    inColumn = value;
+//}

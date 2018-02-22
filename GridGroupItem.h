@@ -14,10 +14,13 @@ enum class GridType{
     hexagonEvenQ
 };
 
-struct InputDataForGridGroup{
-    QSizeF sceneSize;
-    int numberOfColumns{1};
-    int numberOfRows{1};
+struct NumberOfCells{
+    int inColumn{1};
+    int inRow{1};
+    NumberOfCells(){}
+    NumberOfCells(int column, int row):
+        inColumn(column),
+        inRow(row){}
 };
 
 //************************************************************
@@ -29,7 +32,7 @@ class GridGroupItem : public QWidget, public QGraphicsItemGroup
     Q_OBJECT
 
 public:
-    explicit GridGroupItem(InputDataForGridGroup inputData,
+    explicit GridGroupItem(NumberOfCells numberOfCells,
                            GridType typeGrid = GridType::hexagonOddR);
 
     QSizeF getSceneSize()const;
@@ -52,8 +55,8 @@ private:
     ServiceDataForGridCell _serviceData;
     QVector<QVector<GridItem *>> _grid;
     GridType _typeGrid;
-    QGraphicsView* _graphicsView;
-    InputDataForGridGroup _inputData;
+    NumberOfCells _numberOfCells;
+    QSizeF _sceneSize;
 };
 
 #endif // GRIDGROUPITEM_H
