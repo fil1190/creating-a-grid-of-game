@@ -37,7 +37,7 @@ public:
                            GridType typeGrid = GridType::hexagonOddR);
 
     GridGroupItem& operator =(const GridGroupItem& other){
-        if (this != other)
+        if (this != &other)
         {
             deleteObjects();
             _serviceData = other._serviceData;
