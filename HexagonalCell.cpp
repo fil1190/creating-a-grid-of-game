@@ -7,25 +7,29 @@ HexagonalCell::HexagonalCell(OrientHexagon orient)
     _orientHexagon = (orient);
 }
 
-QPolygonF HexagonalCell::calculateCoordinatesForVerticesOfPolygon()
+QPolygonF HexagonalCell::calculateCoordinatesForVerticesOfPolygon(const QPointF& coordinatesOfCenter,
+                                                                  const QVector<float> edgeSize)
 {
-    const qreal PI = 355.0/113.0;
-    qreal angle;
-    QPointF point;
+    static const qreal PI = 355.0/113.0;
+    static qreal angle;
+    static QPointF point;
+    static QPolygonF verticesOfPolygon;
+    verticesOfPolygon.clear();
+
     for (int i=0; i<6; ++i)
     {
         angle = PI/180 * calculateAngleDeg(i);
 
-        if (!_edgeSize.size())
-            return _verticesOfPolygon;
+        if (!edgeSize.size())
+            return verticesOfPolygon;
 
-        point.setX(_coordinatesOfCenter.x() + _edgeSize.at(0) * cos(angle));
-        point.setY(_coordinatesOfCenter.y() + _edgeSize.at(0) * sin(angle));
-        _verticesOfPolygon.push_back(point);
+        point.setX(coordinatesOfCenter.x() + edgeSize.at(0) * cos(angle));
+        point.setY(coordinatesOfCenter.y() + edgeSize.at(0) * sin(angle));
+        verticesOfPolygon.push_back(point);
 //        if(i && i !=(6-1))
 //            _verticesOfPolygon.push_back(point);
     }
-    return _verticesOfPolygon;
+    return verticesOfPolygon;
 }
     qreal HexagonalCell::calculateAngleDeg(const int numberAngle){
         float angle = 60 * numberAngle;

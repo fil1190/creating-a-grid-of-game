@@ -22,17 +22,19 @@ public:
     void paint (QPainter *painter,
                 const QStyleOptionGraphicsItem *option,
                 QWidget *widget);
+
     inline void setCoordinatesOfCell(QPoint coord){
         _pGridCell->setCoordinatesOfCell(coord);
     }
-    inline void setServiceData (const ServiceDataForGridCell &servData){
-        _pGridCell->setServiceData(servData);
-    }
+//    inline void setServiceData (const ServiceDataForGridCell &servData){
+//        _pGridCell->setServiceData(servData);
+//    }
 
 private:
     IGridCell *_pGridCell;
     QSizeF _cellSize;
     QPointF _coordOfCenter;
+    QVector <float> _edgeSize;
 };
 
 #endif // GRIDITEM_H

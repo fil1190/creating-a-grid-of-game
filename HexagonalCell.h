@@ -13,7 +13,8 @@ class HexagonalCell: public IGridCell
 public:
     HexagonalCell(OrientHexagon orient = OrientHexagon::pointy_topped);
 
-    virtual QPolygonF calculateCoordinatesForVerticesOfPolygon();
+    virtual QPolygonF calculateCoordinatesForVerticesOfPolygon(const QPointF& coordinatesOfCenter,
+                                                               const QVector <float> edgeSize);
     ServiceDataForGridCell calculateServiceData(const QSizeF& sceneSize,
                                   int numberOfCellsAtColumn = 1,
                                   int numberOfCellsAtRow = 1);
