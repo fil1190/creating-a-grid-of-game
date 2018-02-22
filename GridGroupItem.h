@@ -32,10 +32,26 @@ class GridGroupItem : public QWidget, public QGraphicsItemGroup
     Q_OBJECT
 
 public:
-    explicit GridGroupItem(QWidget *parent,
-                           NumberOfCells numberOfCells,
+    explicit GridGroupItem(NumberOfCells numberOfCells,
+                           QWidget *parent = nullptr,
                            GridType typeGrid = GridType::hexagonOddR);
+
+    GridGroupItem& operator =(const GridGroupItem& other){
+        if (this != other)
+        {
+            deleteObjects();
+            _serviceData = other._serviceData;
+            _typeGrid = other._typeGrid;
+            _numberOfCells = other._numberOfCells;
+            _sceneSize = other._sceneSize;
+            _grid.clear();
+            // добавить функцию создания ячеек и переопределить конструктор копирования
+        }
+        return *this;
+    }
+
     ~GridGroupItem();
+
 
     QSizeF getSceneSize()const;
 
@@ -50,6 +66,7 @@ private:
                               const int numberTheColumn);
 
     void calculateServiceData();
+    void deleteObjects();
     GridItem *creatingGridCell();
     IGridCell* creatingGridCellForServiceData();
 

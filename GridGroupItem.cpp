@@ -1,9 +1,12 @@
 #include "GridGroupItem.h"
 #include "HexagonalCell.h"
 
-GridGroupItem::GridGroupItem(QWidget *parent, NumberOfCells numberOfCells, GridType typeGrid):
+GridGroupItem::GridGroupItem(NumberOfCells numberOfCells,
+                             QWidget *parent,
+                             GridType typeGrid):
     _typeGrid(typeGrid),
-    _numberOfCells(numberOfCells)
+    _numberOfCells(numberOfCells),
+    QWidget(parent)
 {
     _sceneSize.setHeight(1000);
     _sceneSize.setWidth(1000);
