@@ -134,13 +134,3 @@ IGridCell* GridGroupItem::creatingGridCellForServiceData()
     }
 
 }
-
-//int NumberOfCells::getNumberOfColumns() const
-//{
-//    return inColumn;
-//}
-
-//void NumberOfCells::setNumberOfColumns(int value)
-//{
-//    inColumn = value;
-//}

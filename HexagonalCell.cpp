@@ -16,7 +16,7 @@ QPolygonF HexagonalCell::calculateCoordinatesForVerticesOfPolygon(const QPointF&
     static QPolygonF verticesOfPolygon;
     verticesOfPolygon.clear();
 
-    for (int i=0; i<6; ++i)
+    for (int i=0; i<5; ++i)
     {
         angle = PI/180 * calculateAngleDeg(i);
 
@@ -36,7 +36,7 @@ QPolygonF HexagonalCell::calculateCoordinatesForVerticesOfPolygon(const QPointF&
         switch (_orientHexagon)
         {
         case OrientHexagon::pointy_topped:
-            return angle + 30;
+            return angle -270;
             break;
         case OrientHexagon::flat_topped:
             return angle;
