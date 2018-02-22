@@ -1,13 +1,20 @@
 #include "GridGroupItem.h"
 #include "HexagonalCell.h"
 
-GridGroupItem::GridGroupItem(NumberOfCells numberOfCells, GridType typeGrid):
+GridGroupItem::GridGroupItem(QWidget *parent, NumberOfCells numberOfCells, GridType typeGrid):
     _typeGrid(typeGrid),
     _numberOfCells(numberOfCells)
 {
     _sceneSize.setHeight(1000);
     _sceneSize.setWidth(1000);
     creatingGrid();
+}
+
+GridGroupItem::~GridGroupItem()
+{
+    for (int i = 0; i < _grid.size(); ++i)
+        for (int j = 0; j < _grid.at(i).size(); ++j)
+            delete _grid.at(i).at(j);
 }
 
 QSizeF GridGroupItem::getSceneSize() const

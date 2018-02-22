@@ -32,8 +32,10 @@ class GridGroupItem : public QWidget, public QGraphicsItemGroup
     Q_OBJECT
 
 public:
-    explicit GridGroupItem(NumberOfCells numberOfCells,
+    explicit GridGroupItem(QWidget *parent,
+                           NumberOfCells numberOfCells,
                            GridType typeGrid = GridType::hexagonOddR);
+    ~GridGroupItem();
 
     QSizeF getSceneSize()const;
 

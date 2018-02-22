@@ -11,14 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     scene = new QGraphicsScene(this);
-
-
-
-//    NumberOfCell inputData;
-//    inputData.sceneSize = QSize(1000,1000);
-//    inputData.numberOfColumns = 5;
-//    inputData.numberOfRows = 3;
-    item = new GridGroupItem(NumberOfCells(5,3));
+    item = new GridGroupItem(this, NumberOfCells(5,3));
     scene->addItem(item);
     QSizeF sceneSize = item->getSceneSize();
     scene->setSceneRect(0,0,sceneSize.width(),sceneSize.height());
