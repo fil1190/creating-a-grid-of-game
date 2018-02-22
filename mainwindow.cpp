@@ -20,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::resizeEvent(QResizeEvent *) {
     ui->graphicsView->fitInView(item, Qt::KeepAspectRatio);
-    ui->graphicsView->centerOn(500, 0);
 }
 
 MainWindow::~MainWindow()
