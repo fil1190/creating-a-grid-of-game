@@ -16,7 +16,7 @@ QPolygonF HexagonalCell::calculateCoordinatesForVerticesOfPolygon(const QPointF&
     static QPolygonF verticesOfPolygon;
     verticesOfPolygon.clear();
 
-    for (int i=0; i<5; ++i)
+    for (int i=0; i<6; ++i)
     {
         angle = PI/180 * calculateAngleDeg(i);
 
@@ -36,7 +36,7 @@ QPolygonF HexagonalCell::calculateCoordinatesForVerticesOfPolygon(const QPointF&
         switch (_orientHexagon)
         {
         case OrientHexagon::pointy_topped:
-            return angle -270;
+            return angle + 30;
             break;
         case OrientHexagon::flat_topped:
             return angle;
@@ -83,8 +83,13 @@ ServiceDataForGridCell HexagonalCell::calculateServiceData(const QSizeF& sceneSi
     }
 
         float HexagonalCell::calculateMinEdge(float a, float b) const{
-            if (a < b)
-                return a;
-            else
-                return b;
+            static int min = 30;
+            if (a > min && b > min)
+            {
+                if (a < b)
+                    return a;
+                else
+                    return b;
+            } else
+                return min;
         }
