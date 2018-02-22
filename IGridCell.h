@@ -45,9 +45,7 @@ public:
                                           int numberOfCellsAtColumn = 1,
                                           int numberOfCellsAtRow = 1) = 0;
 
-protected:  
-    QPointF _coordinatesOfCenter;
-    QVector <float> _edgeSize;
+protected:
     QPoint _coordinatesOfCell;
 
 };

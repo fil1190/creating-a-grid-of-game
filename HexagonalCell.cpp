@@ -53,11 +53,6 @@ ServiceDataForGridCell HexagonalCell::calculateServiceData(const QSizeF& sceneSi
     serviceData = calculateEdgeForPointyTopped(sceneSize,
                                                numberOfCellsAtColumn,
                                                numberOfCellsAtRow);
-
-// fix me!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//    _coordinatesOfCenter.setX((serviceData.biasFromCenter.inWidth/2.0));
-//    _coordinatesOfCenter.setY(serviceData.biasFromCenter.inHeight*2.0/3.0);
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     return serviceData;
 }
     ServiceDataForGridCell HexagonalCell::calculateEdgeForPointyTopped(const QSizeF& sceneSize,
