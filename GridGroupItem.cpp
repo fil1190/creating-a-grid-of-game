@@ -10,15 +10,17 @@ GridGroupItem::GridGroupItem(QWidget *parent, NumberOfCells numberOfCells, GridT
     creatingGrid();
 }
 
-GridGroupItem::~GridGroupItem()
-{
+GridGroupItem::~GridGroupItem(){
+    deleteObjects();
+}
+
+void GridGroupItem::deleteObjects(){
     for (int i = 0; i < _grid.size(); ++i)
         for (int j = 0; j < _grid.at(i).size(); ++j)
             delete _grid.at(i).at(j);
 }
 
-QSizeF GridGroupItem::getSceneSize() const
-{
+QSizeF GridGroupItem::getSceneSize() const{
     QSize sceneSize;
     sceneSize.setWidth((_serviceData.cellSize.width() * _numberOfCells.inColumn)+0.5*_serviceData.cellSize.width());
     sceneSize.setHeight((_serviceData.cellSize.height()*3.0/4.0 * (_numberOfCells.inRow-1.0))+ _serviceData.cellSize.height());
@@ -26,16 +28,13 @@ QSizeF GridGroupItem::getSceneSize() const
 }
 
 
-void GridGroupItem::creatingGrid()
-{
+void GridGroupItem::creatingGrid(){
     QPointF coordinates(0,0);
     QVector <GridItem*> gridLine;
 
     calculateServiceData();
-    for (int i = 0; i < _numberOfCells.inRow; ++i)
-    {
-        for (int j = 0; j < _numberOfCells.inColumn; ++j)
-        {
+    for (int i = 0; i < _numberOfCells.inRow; ++i){
+        for (int j = 0; j < _numberOfCells.inColumn; ++j){
             _serviceData.coordinatesOfCenter = calculateNewCoordinatesForCenter(coordinates, i, j);
             gridLine.push_back(creatingGridCell());
             this->addToGroup(gridLine.at(j));
