@@ -3,9 +3,8 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
-#include "myItem.h"
 #include "GridItem.h"
-#include "MyGraphicsView.h"
+#include "GridGroupItem.h"
 
 namespace Ui {
 class MainWindow;
