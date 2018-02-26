@@ -26,9 +26,6 @@ public:
     inline void setCoordinatesOfCell(QPoint coord){
         _pGridCell->setCoordinatesOfCell(coord);
     }
-//    inline void setServiceData (const ServiceDataForGridCell &servData){
-//        _pGridCell->setServiceData(servData);
-//    }
 
 private:
     IGridCell *_pGridCell;
