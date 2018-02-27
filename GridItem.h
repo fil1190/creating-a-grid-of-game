@@ -4,15 +4,19 @@
 #include <QPainter>
 #include <QGraphicsItem>
 #include <IGridCell.h>
+#include <QWidget>
 
 //*************************************************************
 // ПАТТЕРН "СОСТОЯНИЕ"
 //*************************************************************
 
-class GridItem: public QGraphicsItem
+class GridItem: public QWidget, public QGraphicsItem
 {
+   Q_OBJECT
 public:
-    explicit GridItem(IGridCell * pointer, const ServiceDataForGridCell& serviceData);
+    explicit GridItem(IGridCell *pointer,
+                      const ServiceDataForGridCell& serviceData,
+                      QWidget *parent = 0);
     GridItem(const GridItem& other) = delete;
     GridItem& operator = (const GridItem& other) = delete;
     ~GridItem(){delete _pGridCell;}
