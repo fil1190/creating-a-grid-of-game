@@ -40,8 +40,8 @@ void GridGroupItem::creatingGrid(){
         for (int j = 0; j < _numberOfCells.inColumn; ++j){
             _serviceData.coordinatesOfCenter = calculateNewCoordinatesForCenter(coordinates, i, j);
             gridLine.push_back(creatingGridCell());
-            this->addToGroup(gridLine.at(j));
             gridLine.at(j)->setCoordinatesOfCell(QPoint(i,j));
+            this->addToGroup(gridLine.at(j));            
         }
         _grid.push_back(gridLine);
         gridLine.clear();

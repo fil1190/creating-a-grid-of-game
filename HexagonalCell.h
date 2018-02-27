@@ -8,6 +8,14 @@ enum class OrientHexagon {
     flat_topped
     };
 
+enum class TypeOfCell{
+    firstCell,
+    firstCellInRowOdd,
+    firstCellInRowEven,
+    firstCellInColumn,
+    ordinaryCell
+};
+
 class HexagonalCell: public IGridCell
 {
 public:
@@ -22,9 +30,12 @@ public:
 private:
     OrientHexagon _orientHexagon;
     qreal calculateAngleDeg (const int numberAngle);
+    void determiningCellType();
     ServiceDataForGridCell calculateEdgeForPointyTopped (const QSizeF& sceneSize,
                                                           int numberOfCellsAtColumn,
                                                           int numberOfCellsAtRow) const;
+    TypeOfCell _typeOfCell;
+    int _namberOfVertices{6};
     float calculateMinEdge(float a, float b) const;
 };
 

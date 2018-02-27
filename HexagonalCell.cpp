@@ -1,7 +1,6 @@
 #include "HexagonalCell.h"
 #include <math.h>
 
-
 HexagonalCell::HexagonalCell(OrientHexagon orient)
 {
     _orientHexagon = (orient);
@@ -14,9 +13,12 @@ QPolygonF HexagonalCell::calculateCoordinatesForVerticesOfPolygon(const QPointF&
     static qreal angle;
     static QPointF point;
     static QPolygonF verticesOfPolygon;
-    verticesOfPolygon.clear();
 
-    for (int i=0; i<6; ++i)
+
+    verticesOfPolygon.clear();
+    determiningCellType();
+
+    for (int i=0; i < _namberOfVertices; ++i)
     {
         angle = PI/180 * calculateAngleDeg(i);
 
@@ -26,23 +28,54 @@ QPolygonF HexagonalCell::calculateCoordinatesForVerticesOfPolygon(const QPointF&
         point.setX(coordinatesOfCenter.x() + edgeSize.at(0) * cos(angle));
         point.setY(coordinatesOfCenter.y() + edgeSize.at(0) * sin(angle));
         verticesOfPolygon.push_back(point);
-//        if(i && i !=(6-1))
-//            _verticesOfPolygon.push_back(point);
+        if (_typeOfCell != TypeOfCell::firstCell && i != 0 && i != (_namberOfVertices-1))
+            verticesOfPolygon.push_back(point);
     }
     return verticesOfPolygon;
 }
     qreal HexagonalCell::calculateAngleDeg(const int numberAngle){
         float angle = 60 * numberAngle;
-        switch (_orientHexagon)
+        switch (_typeOfCell)
         {
-        case OrientHexagon::pointy_topped:
-            return angle + 30;
+        case TypeOfCell::firstCell:
+        case TypeOfCell::firstCellInColumn:
+            return angle - 150;
             break;
-        case OrientHexagon::flat_topped:
-            return angle;
+        case TypeOfCell::firstCellInRowEven:
+            return angle - 30;
+            break;
+        case TypeOfCell::firstCellInRowOdd:
+            return angle - 90;
+            break;
+        case TypeOfCell::ordinaryCell:
+            return angle - 90;
             break;
         default:
             return angle;
+        }
+    }
+
+    void HexagonalCell::determiningCellType()
+    {
+        if (_coordinatesOfCell.x() == 0 && _coordinatesOfCell.y() == 0)
+            _typeOfCell = TypeOfCell::firstCell;
+        else if (_coordinatesOfCell.x() == 0)
+        {
+            _typeOfCell = TypeOfCell::firstCellInColumn;
+        }
+        else if (_coordinatesOfCell.y() == 0)
+        {
+            if ((_coordinatesOfCell.x()%2) == 0)
+                _typeOfCell = TypeOfCell::firstCellInRowEven;
+            else
+            {
+                _typeOfCell = TypeOfCell::firstCellInRowOdd;
+            }
+        }
+        else
+        {
+            _typeOfCell = TypeOfCell::ordinaryCell;
+            _namberOfVertices = 5;
         }
     }
 

@@ -21,6 +21,12 @@ void GridItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 {
     QPen pen(Qt::black, 1);
     painter->setPen(pen);
-    painter->drawConvexPolygon(_pGridCell->calculateCoordinatesForVerticesOfPolygon(_coordOfCenter,
+
+    QPoint coordinates = _pGridCell->getCoordinatesOfCell();
+    if (coordinates.x() == 0 && coordinates.y() == 0)
+        painter->drawConvexPolygon(_pGridCell->calculateCoordinatesForVerticesOfPolygon(_coordOfCenter,
                                                                                     _edgeSize));
+    else
+        painter->drawLines(_pGridCell->calculateCoordinatesForVerticesOfPolygon(_coordOfCenter,
+                                                                               _edgeSize));
 }
