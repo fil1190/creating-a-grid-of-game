@@ -17,7 +17,7 @@ QRectF GridItem::boundingRect() const
 
 void GridItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    QPen pen(Qt::red, 3);
+    QPen pen(Qt::black, 1);
     painter->setPen(pen);
     painter->drawConvexPolygon(_pGridCell->calculateCoordinatesForVerticesOfPolygon(_coordOfCenter,
                                                                                     _edgeSize));
