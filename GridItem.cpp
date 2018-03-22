@@ -1,13 +1,13 @@
 #include "GridItem.h"
 #include <QVector>
-#include <QWidget>
+#include <QObject>
 
-GridItem::GridItem(IGridCell *pointer, const ServiceDataForGridCell &serviceData, QWidget *parent):
+GridItem::GridItem(IGridCell *pointer, const ServiceDataForGridCell &serviceData, QObject *parent):
     _cellSize(serviceData.cellSize),
     _edgeSize(serviceData.edgesSize),
     _coordOfCenter(serviceData.coordinatesOfCenter),
     _pGridCell(pointer),
-    QWidget(parent)
+    QObject(parent)
 {
 
 }

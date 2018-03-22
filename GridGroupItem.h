@@ -2,7 +2,7 @@
 #define GRIDGROUPITEM_H
 
 #include <QGraphicsItemGroup>
-#include <QWidget>
+#include <QObject>
 #include <QVector>
 #include <QGraphicsView>
 #include "GridItem.h"
@@ -27,13 +27,13 @@ struct NumberOfCells{
 //      ПАТЕРН СТРАТЕГИЯ
 //************************************************************
 
-class GridGroupItem : public QWidget, public QGraphicsItemGroup
+class GridGroupItem : public QObject, public QGraphicsItemGroup
 {
     Q_OBJECT
 
 public:
     explicit GridGroupItem(NumberOfCells numberOfCells,
-                           QWidget *parent = nullptr,
+                           QObject *parent = nullptr,
                            GridType typeGrid = GridType::hexagonOddR);
 
     GridGroupItem& operator =(const GridGroupItem& other){
