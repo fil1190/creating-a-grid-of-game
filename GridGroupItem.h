@@ -36,18 +36,9 @@ public:
                            QObject *parent = nullptr,
                            GridType typeGrid = GridType::hexagonOddR);
 
-    GridGroupItem& operator =(const GridGroupItem& other){
-        if (this != &other)
-        {
-            deleteObjects();
-            _serviceData = other._serviceData;
-            _typeGrid = other._typeGrid;
-            _numberOfCells = other._numberOfCells;
-            _sceneSize = other._sceneSize;
-            _grid.clear();
-            // добавить функцию создания ячеек и переопределить конструктор копирования
-        }
-        return *this;
+    GridGroupItem& operator =(const GridGroupItem& other);
+    GridGroupItem(const GridGroupItem& other){
+        *this = other;
     }
 
     ~GridGroupItem();
