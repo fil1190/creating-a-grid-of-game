@@ -23,5 +23,4 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete scene;
-    delete item;
 }

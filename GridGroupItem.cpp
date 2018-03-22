@@ -96,20 +96,20 @@ GridItem* GridGroupItem::creatingGridCell()
     switch(_typeGrid)
     {
     case GridType::hexagonOddR:
-        return (new GridItem(new HexagonalCell(), _serviceData));
+        return (new GridItem(new HexagonalCell(), _serviceData, this));
         break;
     case GridType::hexagonEvenR:
-        return (new GridItem(new HexagonalCell(), _serviceData));
+        return (new GridItem(new HexagonalCell(), _serviceData, this));
         break;
     case GridType::hexagonOddQ:
-        return (new GridItem(new HexagonalCell(OrientHexagon::flat_topped), _serviceData));
+        return (new GridItem(new HexagonalCell(OrientHexagon::flat_topped), _serviceData, this));
         break;
     case GridType::hexagonEvenQ:
-        return (new GridItem(new HexagonalCell(OrientHexagon::flat_topped), _serviceData));
+        return (new GridItem(new HexagonalCell(OrientHexagon::flat_topped), _serviceData, this));
         break;
     default:
         // FEX ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        return (new GridItem(new HexagonalCell(), _serviceData));
+        return (new GridItem(new HexagonalCell(), _serviceData, this));
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         break;
 }
