@@ -18,9 +18,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-protected:
-    void resizeEvent(QResizeEvent *);
-
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
